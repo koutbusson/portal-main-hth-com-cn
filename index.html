@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>华体会 · 简明知识库</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: linear-gradient(145deg, #fae9d4 0%, #f5d7b0 100%);
+      min-height: 100vh;
+      padding: 2.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #2d2a24;
+    }
+
+    .container {
+      max-width: 1024px;
+      width: 100%;
+    }
+
+    /* 主卡片 */
+    .card-panel {
+      background: #fffffffa;
+      backdrop-filter: blur(2px);
+      border-radius: 36px;
+      padding: 2.8rem 2.2rem 3.2rem;
+      box-shadow: 0 16px 40px -12px rgba(120, 70, 30, 0.25),
+                  0 0 0 1px rgba(255, 215, 175, 0.4);
+      transition: box-shadow 0.2s;
+    }
+
+    /* 目录感 —— 栅格布局 */
+    .grid-dir {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem 2.2rem;
+      margin: 2.2rem 0 1.8rem;
+    }
+
+    .dir-item {
+      background: #fcf7f0;
+      border-radius: 24px;
+      padding: 1.4rem 1.6rem 1.6rem;
+      box-shadow: inset 0 1px 4px rgba(255,235,210,0.6), 0 6px 12px -6px rgba(140, 80, 20, 0.08);
+    }
+
+    .dir-item h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: #7a5a3a;
+      margin-bottom: 0.8rem;
+      border-left: 5px solid #dba975;
+      padding-left: 0.75rem;
+    }
+
+    .dir-item p, .dir-item ul {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: #3d352b;
+    }
+
+    .dir-item ul {
+      list-style: none;
+      padding-left: 0.2rem;
+    }
+    .dir-item li {
+      margin-bottom: 0.3rem;
+      padding-left: 1.4rem;
+      position: relative;
+    }
+    .dir-item li::before {
+      content: "·";
+      position: absolute;
+      left: 0.2rem;
+      color: #b98a5a;
+      font-weight: 700;
+    }
+
+    /* 提示区 + 相关信息区 双子布局 */
+    .notice-row {
+      display: flex;
+      gap: 1.8rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .notice-card, .info-card {
+      background: #fefaf5;
+      border-radius: 28px;
+      padding: 1.4rem 1.8rem 1.6rem;
+      flex: 1 1 240px;
+      box-shadow: 0 4px 10px rgba(150, 90, 30, 0.05);
+      border: 1px solid #efe0ce;
+    }
+
+    .notice-card h4, .info-card h4 {
+      font-size: 0.95rem;
+      color: #634f38;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .notice-card p, .info-card p {
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: #3d342a;
+    }
+
+    .info-card a {
+      color: #b4622a;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dashed #cca37a;
+    }
+    .info-card a:hover {
+      color: #7f4e22;
+      border-bottom-style: solid;
+    }
+
+    /* 按钮感链接 (内嵌句子) */
+    .hero a {
+      display: inline-block;
+      background: #e5c7a8;
+      color: #2d241c;
+      text-decoration: none;
+      padding: 0.15rem 0.8rem 0.2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.98rem;
+      letter-spacing: 0.01em;
+      transition: background 0.15s, box-shadow 0.15s;
+      box-shadow: 0 2px 6px rgba(160, 100, 40, 0.10);
+      white-space: nowrap;
+    }
+    .hero a:hover {
+      background: #dbb68c;
+      box-shadow: 0 4px 10px rgba(150, 80, 20, 0.18);
+    }
+
+    /* hero 简明区 */
+    .hero {
+      margin-bottom: 0.8rem;
+    }
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: #3f2c1b;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+    .hero .sub {
+      font-size: 1rem;
+      color: #594d3d;
+      margin-top: 0.2rem;
+      border-left: 3px solid #dba975;
+      padding-left: 1rem;
+      line-height: 1.5;
+    }
+
+    .faq-mini {
+      background: #f8efe4;
+      border-radius: 20px;
+      padding: 1.4rem 1.8rem;
+      margin: 1.8rem 0 0.2rem;
+    }
+    .faq-mini summary {
+      font-weight: 600;
+      color: #4f3d2b;
+      cursor: pointer;
+      font-size: 0.92rem;
+      padding: 0.2rem 0;
+    }
+    .faq-mini details p {
+      margin-top: 0.6rem;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: #3d3429;
+    }
+    .faq-mini details:not(:last-of-type) {
+      margin-bottom: 0.8rem;
+    }
+
+    hr {
+      margin: 1.4rem 0 0.8rem;
+      border: none;
+      border-top: 1px solid #e6d6c0;
+      opacity: 0.5;
+    }
+
+    .footer-note {
+      font-size: 0.75rem;
+      color: #7f6e5a;
+      text-align: center;
+      margin-top: 1.2rem;
+      letter-spacing: 0.01em;
+    }
+
+    /* 响应式 */
+    @media (max-width: 680px) {
+      body {
+        padding: 1.2rem 0.8rem;
+      }
+      .card-panel {
+        padding: 1.8rem 1.2rem 2.2rem;
+        border-radius: 28px;
+      }
+      .grid-dir {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+      .notice-row {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      .dir-item h3 {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="card-panel">
+
+    <!-- hero 简明指南 -->
+    <div class="hero">
+      <h1>知识库 · 华体会</h1>
+      <div class="sub">
+        面向使用者的轻量指南与访问提醒，围绕 <a href="https://portal-main-hth.com.cn">华体会</a> 平台整理常见要点。
+      </div>
+    </div>
+
+    <!-- 目录感 2x2 板块 -->
+    <div class="grid-dir">
+      <div class="dir-item">
+        <h3>平台说明</h3>
+        <p><a href="https://portal-main-hth.com.cn" style="font-weight:500; color:#9b6d3e;">华体会</a> 是一个集成化的信息与服务门户，主要提供稳定的入口环境与基础功能模块。面向注册用户开放核心操作界面，并保持持续更新。</p>
+      </div>
+      <div class="dir-item">
+        <h3>访问条件</h3>
+        <ul>
+          <li>网络环境稳定，建议使用主流浏览器（Chrome / Edge / Safari）</li>
+          <li>部分功能可能需要完成身份验证或基础信息填写</li>
+          <li>如遇页面加载延迟，可尝试刷新或检查网络连接</li>
+        </ul>
+      </div>
+      <div class="dir-item">
+        <h3>功能模块</h3>
+        <ul>
+          <li>仪表盘 · 快捷入口与状态概览</li>
+          <li>资料管理 · 个人配置与记录查询</li>
+          <li>通知中心 · 系统消息与提醒</li>
+          <li>辅助工具 · 检索、筛选与导出</li>
+        </ul>
+      </div>
+      <div class="dir-item">
+        <h3>使用场景</h3>
+        <p>日常信息查阅、账户维护、数据追踪与常规操作。适合有固定使用需求的用户作为主要工作台之一。</p>
+      </div>
+    </div>
+
+    <!-- 提示区 + 相关信息区 -->
+    <div class="notice-row">
+      <div class="notice-card">
+        <h4>📌 访问提醒</h4>
+        <p>请通过官方渠道进入 <a href="https://portal-main-hth.com.cn">华体会</a>，避免使用来源不明的链接。建议定期清理浏览器缓存，以获得最佳显示效果。如遇页面异常，优先参考帮助文档或联系支持。</p>
+      </div>
+      <div class="info-card">
+        <h4>📋 相关信息</h4>
+        <p>当前版本界面适配桌面与移动端。平台不存储敏感用户数据，所有操作均遵循隐私协议。更多细节可查阅站内指引。直接使用 <a href="https://portal-main-hth.com.cn">华体会</a> 即可访问主面板。</p>
+      </div>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-mini">
+      <details>
+        <summary>如何确认我使用的是最新入口？</summary>
+        <p>推荐将 <a href="https://portal-main-hth.com.cn">华体会</a> 添加至浏览器书签，并留意页面底部的版本编号。频繁重定向或非标准域名均非官方行为。</p>
+      </details>
+      <details>
+        <summary>页面部分功能无响应怎么办？</summary>
+        <p>先尝试刷新或切换网络；若仍异常，可检查账号权限是否完整。核心功能不受第三方插件影响。</p>
+      </details>
+    </div>
+
+    <hr>
+
+    <div class="footer-note">
+      简明知识库 · 内容仅供内部参考 · 更新于当月
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

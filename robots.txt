@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://koutbusson.github.io/portal-main-hth-com-cn/sitemap.xml
