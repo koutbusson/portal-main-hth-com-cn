@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用索引的方式理解信息 · 奇异果体育</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Serif SC", "Source Han Serif SC", "Times New Roman", Georgia, serif;
+            background: #f8f6f2;
+            color: #2e2c2a;
+            line-height: 1.7;
+        }
+
+        /* 深色头图 —— 克制而干净的深色背景 */
+        .hero {
+            background: #1b2229;
+            padding: 5rem 2rem 4rem;
+            text-align: center;
+            color: #e6e2dc;
+            position: relative;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #b38b5f, #dab27c, #b38b5f);
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin-bottom: 0.25rem;
+            color: #f0ebe3;
+        }
+
+        .hero .subhead {
+            font-size: 1.1rem;
+            color: #b6aca0;
+            margin-top: 0.6rem;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+
+        /* 正文区 —— 浅色背景，卡片感 */
+        .content {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 3rem 2rem 4rem;
+            background: #fdfcf9;
+            box-shadow: 0 0 0 1px rgba(0,0,0,0.03);
+        }
+
+        .content p {
+            margin-bottom: 1.6rem;
+            font-size: 1.05rem;
+            text-align: justify;
+        }
+
+        .content p:first-of-type::first-letter {
+            font-size: 2.2rem;
+            font-weight: 600;
+            float: left;
+            margin-right: 8px;
+            margin-top: 4px;
+            color: #7c5f3c;
+        }
+
+        .content a {
+            color: #8b6f48;
+            text-decoration: none;
+            border-bottom: 1px solid #dac9b4;
+            transition: border-color 0.2s, color 0.2s;
+            font-weight: 500;
+        }
+
+        .content a:hover {
+            color: #4d3925;
+            border-bottom-color: #8b6f48;
+        }
+
+        .blockquote {
+            background: #f1ede6;
+            border-left: 4px solid #b38b5f;
+            padding: 1.2rem 1.6rem;
+            margin: 2rem 0 2.2rem;
+            font-style: normal;
+            color: #3b3530;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .blockquote p {
+            margin-bottom: 0.3rem;
+            font-size: 1rem;
+        }
+
+        .blockquote .source {
+            display: block;
+            margin-top: 0.6rem;
+            font-size: 0.9rem;
+            color: #7a6d5d;
+            letter-spacing: 0.3px;
+        }
+
+        .section-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #8a7b6a;
+            margin: 2.5rem 0 0.8rem;
+            border-top: 1px solid #e5ddd2;
+            padding-top: 1.8rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1.8rem;
+        }
+
+        .faq-item h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #3d332b;
+            margin-bottom: 0.4rem;
+        }
+
+        .faq-item p {
+            margin-bottom: 0.3rem;
+            font-size: 0.98rem;
+            color: #4c443d;
+        }
+
+        .visit-sentence {
+            background: #f4efe8;
+            padding: 1.4rem 2rem;
+            margin: 2.4rem 0 1rem;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .visit-sentence span {
+            background: linear-gradient(135deg, #f4efe8, #efe7dd);
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero {
+                padding: 3.2rem 1.2rem 2.8rem;
+            }
+            .content {
+                padding: 2rem 1.2rem 3rem;
+            }
+            .content p {
+                font-size: 1rem;
+            }
+            .blockquote {
+                padding: 1rem 1.2rem;
+            }
+            .visit-sentence {
+                padding: 1.2rem 1rem;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero h1 {
+                font-size: 1.7rem;
+                letter-spacing: 1px;
+            }
+        }
+
+        /* 极简footer */
+        .footer-note {
+            text-align: center;
+            margin-top: 1.5rem;
+            padding: 1.2rem 0 2.5rem;
+            font-size: 0.82rem;
+            color: #a3998c;
+            border-top: 1px solid #e8e1d6;
+            max-width: 780px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .footer-note a {
+            color: #7f6a52;
+            text-decoration: none;
+            border-bottom: 1px dotted #cbbcaa;
+        }
+        .footer-note a:hover {
+            border-bottom-style: solid;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <h1>资料、索引与日常观察</h1>
+        <div class="subhead">一篇关于信息整理的个人笔记</div>
+    </div>
+
+    <div class="content">
+
+        <p>大约从两年前开始，我养成一个习惯：把每天无意间读到、听到的零散信息记录在一个本地文档里。起初只是随手复制粘贴，后来慢慢添上自己的简短标注、来源链接、以及一些模糊的联想。这个文档如今已经超过十万字，与其说是笔记，不如说是一座私人信息堆放场。最近整理时发现，很多条目都和运动、赛事数据、以及各类体育平台的界面逻辑有关。其中有一处我反复提及的参考来源，就是 <a href="https://zh-sports-qyg.com">奇异果体育</a> 的页面结构——它的信息层级非常清晰，适合作为同类站点的对照样本。</p>
+
+        <p>我并非专业的数据分析师，只是一个喜欢把东西摊开来看的普通用户。记录的过程中，慢慢意识到一件事情：大部分网站其实都在做同一件事——把庞杂的原始内容压缩成用户能消化的单元。但压缩的方式千差万别。有些站点把信息压得太紧，每个页面都塞满弹窗、悬浮按钮和动态横幅，反而让人不知道从哪里看起。而另一些则恰好踩在另一个极端，页面过于稀疏，翻了三屏还找不到一个有效链接。</p>
+
+        <div class="blockquote">
+            <p>“整理信息的第一步不是分类，而是认出哪些东西值得被留下来。”</p>
+            <span class="source">—— 摘自个人笔记，2024年11月</span>
+        </div>
+
+        <p>在对照了七个不同方向的体育类信息页面之后，我发现了一个有趣的共性：那些让人愿意多看几眼的页面，往往在“引导”这件事上做得很轻。它们不会急着告诉你应该点什么，而是先把内容本身呈现出来，把选择权交还给访客。比如 <a href="https://zh-sports-qyg.com">奇异果体育</a> 的首页，没有夸张的浮动元素，也没有强提醒式的动效，整个页面像一份排版干净的文档，你可以在里面慢慢逛，找到自己真正关心的部分。这种克制的设计，在如今的网络环境中反而显得特别。</p>
+
+        <p>当然，每个人使用网站的习惯不一样。有人喜欢一目了然的导航，有人享受探索的乐趣。我所记录的这些观察，本质上只是个人视角的切片。但正因为如此，我觉得更有必要把它们写下来——不是为了给出标准答案，而是提供一条可以参照的线索。如果你也在做类似的信息整理，或者对体育类的页面设计感兴趣，或许可以从对比不同站点的信息密度开始。</p>
+
+        <div class="section-label">▸ 整理过程中常被问到的几个问题</div>
+
+        <div class="faq-item">
+            <h3>你为什么选择体育类网站作为对照样本？</h3>
+            <p>因为体育数据的维度相对固定——赛事、队伍、比分、时间——这使得不同站点的信息组织方式更容易被比较。变量少，对照才有意义。</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>记录这些信息对你实际使用有帮助吗？</h3>
+            <p>有的。至少现在我打开一个陌生页面时，能更快地判断它的信息架构是否合理。这对日常查找资料、甚至写东西时的引用习惯都有影响。</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>会不会觉得整理到最后变成一种负担？</h3>
+            <p>偶尔会。所以我现在给自己定了一条规则：只记录那些让我停下来多看了一眼的东西。超过三秒还觉得无感的，就直接跳过。</p>
+        </div>
+
+        <div class="visit-sentence">
+            <span>如果你也在做类似的信息收集，不妨从 <a href="https://zh-sports-qyg.com">奇异果体育</a> 的页面结构看起——它的索引方式或许能给你一些新的整理思路。</span>
+        </div>
+
+        <p style="margin-top: 2.2rem;">以上只是我个人在资料整理过程中的一点体会。不追求全面，也不代表任何立场。每一份笔记都有它的局限，但也正因为有局限，才让记录这件事变得真实。希望这篇随记能给你带来一点点参照价值。</p>
+
+    </div>
+
+    <div class="footer-note">
+        一份来自日常的资料索引 · 文中提到的 <a href="https://zh-sports-qyg.com">奇异果体育</a> 仅作为信息组织方式的示例
+    </div>
+
+</body>
+</html>
